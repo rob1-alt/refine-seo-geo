@@ -1,0 +1,27 @@
+{
+  "name": "refine-seo-geo",
+  "displayName": "SEO + GEO by Refine",
+  "version": "3.0.0",
+  "description": "Get your brand cited by ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews. Evidence-based (Oct 2026) SEO + GEO skill: AI-visibility audit with statistics, agent-readiness technical check, citable content and comparison pages, off-site citation plan (Reddit, LinkedIn, listicles, review sites), measurement (GA4, GSC, Bing AI Performance) and a full strategy playbook. Adapts to any brand.",
+  "author": {
+    "name": "Robin Pautigny (Refine)",
+    "email": "robin@getrefine.ai",
+    "url": "https://getrefine.ai"
+  },
+  "homepage": "https://github.com/rob1-alt/refine-seo-geo",
+  "repository": "https://github.com/rob1-alt/refine-seo-geo",
+  "license": "MIT",
+  "keywords": [
+    "seo",
+    "geo",
+    "generative-engine-optimization",
+    "aeo",
+    "ai-search",
+    "ai-visibility",
+    "chatgpt",
+    "perplexity",
+    "ai-overviews",
+    "content-marketing",
+    "marketing"
+  ]
+}

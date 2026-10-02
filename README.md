@@ -1,247 +1,120 @@
-# 🚀 refine-seo-geo
+# SEO + GEO by Refine
 
-> A **Claude Code skill** that builds an end-to-end SEO + GEO (Generative Engine Optimization) strategy **for your brand** — automatically adapted to your domain, your product, your ICP, your competitors, and your voice.
+> A Claude skill that gets your brand **cited and recommended by AI assistants** — ChatGPT, Claude, Gemini, Perplexity, Copilot, Mistral Le Chat, Google AI Overviews and AI Mode — and keeps you ranking on Google. Evidence-based, updated **October 2026**, works for any brand.
 
-Open-source, MIT licensed, drop-in install. Made for any team that wants to rank on Google **and** be cited by ChatGPT, Claude, Gemini, and Perplexity.
-
-> **v2 update** — the skill is now fully brand-aware. It auto-detects context from your project (package.json, CLAUDE.md, website crawl, git remote) and asks only what it can't infer. Every output uses *your* brand name, *your* domain, *your* competitors, *your* voice. Nothing is hardcoded.
+Open source (MIT). Installs as a Claude Code plugin or as a skill on claude.ai.
 
 ---
 
-## 🎯 What this skill does for *you*
+## What you get in one session
 
-You install it once. Then, in any project, you ask Claude something like:
+Ask Claude *"Is ChatGPT recommending us? Audit getacme.com"* and you get:
+
+- **An agent-readiness score** for your site: AI bots blocked in robots.txt or by Cloudflare's 2026 defaults, content hidden behind JavaScript, missing sitemap dates, snippet blocks — each with the exact fix.
+- **An AI-visibility report** from real answers (instant with a connected tracker or API keys; otherwise Claude gives you the prompt sheet first and builds the report from the answers you collect): how often you're mentioned (with a confidence interval, not a fake "rank"), who gets recommended instead, which sources the AI relies on, and the 3–5 actions that would change it.
+- **Ready-to-use deliverables**: comparison and "alternatives to X" pages, answer-first articles, refreshed pages, listicle pitches, disclosed Reddit replies, LinkedIn article outlines, a measurement setup (GA4 regex, GSC and Bing AI reports) and before/after impact reports.
+
+## Six modes
+
+| Ask | Mode | Output |
+|---|---|---|
+| "Are we visible in AI answers?" | **Quick audit** | `seo-geo/audit/` — technical score + visibility report |
+| "Can AI bots crawl us? Check our Cloudflare/robots" | **Technical audit** | prioritized fixes + robots.txt block |
+| "Write a page on X", "Acme vs Foo", "alternatives to Foo" | **Citable content** | publish-ready page in your blog format + publish note |
+| "Where do competitors get cited?" | **Off-site plan** | citation gap table + ready-to-send pitches and replies |
+| "How do we measure / prove it worked?" | **Measurement** | KPI definitions, GA4/GSC/Bing setup, impact reports |
+| "Build our SEO/GEO strategy" | **Full strategy** | 90-day plan + `seo-geo/` workspace (Notion/Sheets-ready) |
+
+## Why this skill is different
+
+- **Evidence over folklore.** Every recommendation is tied to 2025–2026 data (Google's AI-search guidance and spam policies, Bing AI Performance, Cloudflare's bot controls, studies from Ahrefs, SE Ranking, Semrush, Muck Rack, AirOps, SparkToro…) with the bias flagged. It tells you what *doesn't* work too: llms.txt, FAQ schema as a GEO lever, "rank #1 in ChatGPT", mass AI pages, self-ranking listicles.
+- **Real measurement.** AI answers change on every run, so the skill never invents results and reports mention rates and share of voice with 95% confidence intervals and before/after significance tests (`scripts/visibility_stats.py`).
+- **Brand-aware.** It reads your repo and site, asks at most five questions, saves `seo-geo/brand-profile.md`, and adapts to your archetype (B2B SaaS, agency, e-commerce, dev tool, consumer, local, creator, regulated) and market (incl. France/EU and Mistral Le Chat).
+- **Off-site first-class.** About 84% of AI citations come from earned media (Muck Rack 2026, vendor data). The skill finds the exact listicles, Reddit threads, review pages and LinkedIn articles AI cites for your competitors, and drafts transparent outreach.
+- **Safe.** No fake reviews, sockpuppets, hidden prompts or scaled thin content: these are spam under Google's 2026 policies and get sites demoted.
+
+## Install
+
+### Claude Code (plugin)
 
 ```
-build me an SEO/GEO strategy for my brand
+/plugin marketplace add rob1-alt/refine-seo-geo
+/plugin install refine-seo-geo@refine
 ```
 
-The skill:
+Then ask: `Audit our AI visibility for example.com` — or call it directly with `/refine-seo-geo:seo-geo`.
 
-1. **Looks at your project** — reads `package.json`, `CLAUDE.md`, README, git remote, and crawls your live site to figure out your brand name, domain, category, voice, and existing content.
-2. **Asks only what it doesn't know** — usually 4 to 6 short questions: ICP, competitors, geo focus, voice constraints.
-3. **Saves a `seo-geo/brand-profile.md`** — your single source of truth. Every output the skill produces reads from here, so it always uses your real brand details.
-4. **Produces a fully customized strategy**:
-   - 30-50 long-tail keywords plausible for *your* ICP
-   - 2-4 content clusters with pillars + satellites built around *your* category
-   - Ready-to-publish article drafts using *your* voice, linking to *your* actual pages, mentioning *your* actual competitors
-   - A citation acquisition plan adapted to *your* archetype (B2B SaaS, agency, e-commerce, dev tool, consumer, local, creator, regulated)
-   - A 50-300 prompt tracking universe built from *your* category terms
-   - A weekly measurement loop
-   - A Notion workspace package, pre-filled
+### claude.ai (skill upload)
 
-If a teammate read all the deliverables, they should be able to identify your brand from the voice and references alone. That's the bar.
+1. Download `seo-geo.zip` from the [latest release](https://github.com/rob1-alt/refine-seo-geo/releases), or zip the `skills/seo-geo/` folder yourself (the zip must contain the `seo-geo/` folder with `SKILL.md` inside).
+2. In Claude's settings, open the **Skills** section, upload the zip and enable it. Code execution needs to be on for the scripts to run.
 
----
+### Manual (Claude Code, without the plugin system)
 
-## 🧠 Why GEO (and not just SEO)?
+```bash
+git clone https://github.com/rob1-alt/refine-seo-geo.git
+cp -r refine-seo-geo/skills/seo-geo ~/.claude/skills/seo-geo
+```
 
-In 2026, B2B buyers and consumers don't always start with Google anymore. They ask **ChatGPT, Claude, Perplexity, or Gemini** — and only the brands those LLMs cite get considered.
+## Requirements
 
-Traditional SEO is necessary but **not sufficient**. You also need:
+- Nothing mandatory. Scripts use only the Python 3.8+ standard library.
+- For live checks, the environment needs internet access (the scripts say so clearly when a sandbox blocks it, and the skill falls back to web fetches).
+- To collect AI answers, any of: a connected [Refine](https://getrefine.ai) MCP, another tracker's export, API keys with web search, a browser tool, or pasting answers manually. The skill never simulates AI answers.
 
-- Content that's **easy for an LLM to extract** (structured, citable, direct answers)
-- A **multi-platform tracker** — each LLM retrieves differently
-- A **citation acquisition plan** for the third-party sources LLMs trust (Reddit, G2, YouTube, Wikipedia, Hacker News, niche directories…)
-- A **prompt universe**, not a keyword universe
-
-This skill packages all of it into one executable workflow that adapts to your brand.
-
----
-
-## 🎭 Adapts to your brand archetype
-
-Different brands need different tactics. The skill picks the right ones:
-
-| Your archetype | What the skill prioritizes |
-|---|---|
-| **B2B SaaS** | G2/Capterra, comparison content, Reddit r/SaaS, industry editorial |
-| **Agency** | Clutch, case-study driven content, LinkedIn editorial |
-| **E-commerce** | Trustpilot, lifestyle press, YouTube reviewers, niche subreddits |
-| **Dev tool** | GitHub, Hacker News, dev.to, Stack Overflow, technical blogs |
-| **Consumer brand** | Reddit, Trustpilot, creators, lifestyle press |
-| **Local business** | Google Business, Yelp, local press + directories |
-| **Creator** | YouTube, Reddit, niche newsletters, podcasts |
-| **Regulated** (health/finance/legal) | Authoritative editorial, .gov/.edu, professional bodies — no Reddit farming |
-
----
-
-## 📋 The 9 phases
-
-| Phase | Output |
-|---|---|
-| **0. Brand discovery** *(NEW in v2)* | `seo-geo/brand-profile.md` — single source of truth |
-| **1. Brief** | Confirmation of inferred profile |
-| **2. Long-tail keyword research** | 30-50 keyword backlog, prioritized, customized to your ICP |
-| **3. Content cluster architecture** | 2-4 clusters with pillar + 4-6 satellites |
-| **4. Article production** | Drafts using your voice, linking to your pages, mentioning your competitors |
-| **5. Citation acquisition plan** | Tier-mapped third-party sources adapted to your archetype |
-| **6. Multi-model tracking setup** | 50-300 prompt universe across ChatGPT, Claude, Gemini, Perplexity |
-| **7. Performance dashboard** | Per-article metrics: GSC + AI visibility per model + share of voice |
-| **8. Weekly measurement loop** | A repeatable 30-min Monday review template |
-| **9. Notion workspace delivery** | Complete Notion-ready package: 7 databases (CSV) + 3 templates + setup guide |
-
----
-
-## 🔑 Core principles
-
-1. **One intent per article** — never two articles cannibalizing on the same long-tail
-2. **Long-tail > head terms** — 4-7 word queries convert better, less competitive
-3. **Citability before rankability** — content must be easy for LLMs to extract
-4. **Multi-model by default** — ChatGPT, Claude, Gemini, Perplexity are not interchangeable
-5. **Measurement first** — no article ships without being added to the prompt tracker
-6. **Source diversity** — own content + 3rd-party citations adapted to your archetype
-7. **Cluster authority** — pillar + 4-6 satellites, never isolated articles
-
----
-
-## 📦 What's inside
+## What's inside
 
 ```
 refine-seo-geo/
-├── SKILL.md                                # Brand-aware methodology + execution playbook
-├── README.md                               # this file
-├── LICENSE                                 # MIT
-└── assets/
-    ├── brand-profile-template.md           # Phase 0 starter
-    ├── article-template.md                 # Article skeleton with placeholder substitution
-    ├── weekly-review-template.md           # Monday review form
-    ├── properties-config.md                # Notion DB properties + views config
-    ├── keywords-backlog-template.csv       # Empty CSV ready to fill
-    ├── editorial-calendar-template.csv
-    ├── citation-tracker-template.csv
-    ├── performance-dashboard-template.csv
-    ├── prompt-universe-template.csv
-    ├── content-clusters-template.csv
-    └── competitor-tracking-template.csv
+├── .claude-plugin/
+│   ├── plugin.json
+│   └── marketplace.json
+└── skills/seo-geo/
+    ├── SKILL.md                      # modes, hard rules, workflow
+    ├── references/
+    │   ├── evidence-2026.md          # numbers, sources, myths, policy red lines
+    │   ├── technical-audit.md        # agent-readiness checklist + robots.txt
+    │   ├── visibility-audit.md       # prompt set, run protocol, report format
+    │   ├── content-playbook.md       # page types, citable anatomy, refresh, checklist
+    │   ├── offsite-playbook.md       # listicles, reviews, Reddit, LinkedIn, YouTube, PR
+    │   ├── measurement.md            # KPIs, sample sizes, impact reports, GA4/GSC/Bing
+    │   ├── archetypes.md             # tactics by brand type, market and stage
+    │   ├── strategy-playbook.md      # 90-day program + workspace
+    │   └── refine-mcp.md             # optional Refine integration
+    ├── scripts/
+    │   ├── ai_readiness_check.py     # AI-bot access & crawlability audit
+    │   └── visibility_stats.py       # mention rate, SoV, citations, CIs, before/after
+    └── assets/                       # brand profile, article & report templates, CSV trackers, weekly review
 ```
 
----
-
-## 🛠️ Installation
-
-### Prerequisites
-
-- [Claude Code](https://claude.com/claude-code) installed
-- macOS, Linux, or WSL
-
-### One-liner
-
-```bash
-git clone https://github.com/rob1-alt/refine-seo-geo.git ~/.claude/skills/refine-seo-geo
-```
-
-That's it. Open Claude Code in any project and the skill loads automatically.
-
-### Verify
-
-In Claude Code, type:
+## Example prompts
 
 ```
-build me an SEO/GEO strategy for my brand
+Audit our AI visibility. We're getacme.com, a payroll tool for French SMEs.
+Check whether AI crawlers can read our site and fix our robots.txt.
+Write "Acme vs PayFit" for HR managers at 20–200 person companies.
+Which pages and Reddit threads does Perplexity cite for our competitors? Draft the outreach.
+Set up GA4 to track ChatGPT/Perplexity/Claude traffic and build our monthly AI-visibility report.
+Here are our tracker exports from before and after the new pricing page — did it work?
+Build a 90-day SEO + GEO plan for our Shopify skincare brand.
 ```
 
-If Claude responds with a discovery flow that *already references your project's name and domain*, the skill is working.
+## Works even better with Refine
 
----
+The skill is fully standalone. If you use [Refine](https://getrefine.ai) (daily AI-visibility tracking on ChatGPT, Gemini and Perplexity, cited sources and Reddit threads, GSC/GA4, content generation and CMS publishing), connect its MCP server and the skill will pull your real data, prioritize opportunities and publish through it.
 
-## 🚀 Usage examples
+## Changelog
 
-### Example 1 — Full strategy from scratch
+See [CHANGELOG.md](CHANGELOG.md). v3.0 (October 2026) is a full rewrite: plugin format, six modes, evidence base, two scripts, statistical measurement, off-site playbook.
 
-```
-I run a B2B SaaS for HR teams. Help me build an SEO/GEO strategy.
-```
+## Contributing
 
-The skill will:
-1. Auto-detect what it can from your project
-2. Ask 4-6 questions to fill the gaps (ICP, competitors, geo, voice)
-3. Save `seo-geo/brand-profile.md` and confirm with you
-4. Generate a 30-keyword long-tail backlog around *your* category
-5. Propose 2-3 content clusters using *your* terminology
-6. Draft the first 3-5 articles in *your* voice, mentioning *your* competitors
-7. Build a citation acquisition plan adapted to HR-tech
-8. Set up a 50-prompt tracking universe with *your* brand and competitors
-9. Deliver a Notion-ready workspace package
+Issues and PRs welcome — especially new studies (with sources), platform changes (bots, CDN defaults, GSC/Bing features) and lessons from real brands. Please include data and dates.
 
-### Example 2 — Single article
+## Author
 
-```
-Write me a GEO-optimized article for my blog on "[long-tail keyword]"
-```
+**Robin Pautigny** — Co-founder, [Refine](https://getrefine.ai) · [LinkedIn](https://www.linkedin.com/in/robin-pautigny/) · [X](https://x.com/robinpautigny)
 
-Returns a 2000-word article using *your* brand voice, linking to *your* actual pages, mentioning *your* competitors when appropriate, and a CTA pointing to *your* actual conversion URL.
-
-### Example 3 — Audit existing content
-
-```
-Audit my blog at example.com against the SEO/GEO principles
-```
-
-Crawls your blog, scores each article on the 20-point checklist, surfaces gaps and refresh opportunities specific to your content.
-
----
-
-## 🥊 Origin story
-
-This skill was built and battle-tested by the team at [Refine](https://refine.ai), an AI brand visibility tracker. We needed a reproducible methodology to grow our own visibility across AI search — then realized the methodology works for any brand, not just ours. So we open-sourced it.
-
-If you want **automated multi-model tracking** to back the methodology — running the prompt universe across ChatGPT/Claude/Gemini/Perplexity continuously, mapping citation sources, computing share of voice — that's what Refine does. Free audit at [refine.ai](https://refine.ai). The skill itself works completely standalone without any Refine account.
-
----
-
-## 🔄 Migrating from v1
-
-If you installed v1: pull the latest. v2's methodology is the same, but:
-
-- v1 implicitly assumed your brand was Refine (oops). v2 works for any brand.
-- v1 outputs landed in `notion-templates/`. v2 outputs land in `seo-geo/` inside the current project, alongside your code.
-- v2 introduces `brand-profile.md` as the source of truth.
-
-Update with:
-
-```bash
-cd ~/.claude/skills/refine-seo-geo
-git pull origin main
-```
-
-Then re-run Phase 0 in any project to generate a fresh brand profile.
-
----
-
-## 🤝 Contributing
-
-Feedback, bug reports, and PRs welcome. The skill is versioned in `SKILL.md` (look for `version: 2.0.0`).
-
-If you use this skill on a real brand and learn something new, please open an issue with the lesson — we'll fold it into the methodology.
-
----
-
-## 📜 License
+## License
 
 MIT — see [LICENSE](LICENSE).
-
-You can use this skill commercially, modify it, redistribute it, and incorporate it into your own products. A link back to this repo is appreciated but not required.
-
----
-
-## 👤 Author
-
-**Robin Pautigny** — Co-founder, [Refine](https://refine.ai)
-- Twitter/X: [@robinpautigny](https://x.com/robinpautigny)
-- LinkedIn: [robin-pautigny](https://www.linkedin.com/in/robin-pautigny/)
-
----
-
-## 🗺️ Roadmap
-
-- [x] `v1.0` — Initial release with hardcoded examples
-- [x] `v2.0` — Brand-aware: auto-detect + brand profile + every output customized
-- [ ] `v2.1` — Voice-fingerprinting from existing content samples (read 3 articles → match tone)
-- [ ] `v2.2` — Auto-generate articles directly into the brand's blog system (MDX, MD, JSON, TS object) detected from the codebase
-- [ ] `v2.3` — Sub-skill `seo-geo-audit` for one-shot brand audits
-- [ ] `v3.0` — Plugin format for `claude plugins install`
-
----
-
-**If this skill helps you ship better SEO/GEO faster, drop a ⭐ on the repo.**
