@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "refine",
+  "owner": {
+    "name": "Refine",
+    "email": "robin@getrefine.ai",
+    "url": "https://getrefine.ai"
+  },
+  "description": "Skills from Refine for SEO and GEO (getting cited in AI answers).",
+  "plugins": [
+    {
+      "name": "refine",
+      "source": "./",
+      "displayName": "Refine",
+      "description": "Get your brand cited by ChatGPT, Claude, Gemini, Perplexity and Google AI Overviews: audit, technical check, citable content, off-site plan, measurement.",
+      "version": "3.0.0",
+      "author": {
+        "name": "Robin Pautigny (Refine)"
+      },
+      "category": "marketing",
+      "tags": [
+        "seo",
+        "geo",
+        "aeo",
+        "ai-search",
+        "ai-visibility",
+        "content"
+      ],
+      "homepage": "https://github.com/rob1-alt/refine-seo-geo",
+      "license": "MIT"
+    }
+  ]
+}
