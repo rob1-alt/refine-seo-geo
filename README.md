@@ -1,4 +1,4 @@
-# SEO + GEO by Refine
+# Refine — SEO + GEO plugin for Claude
 
 > A Claude skill that gets your brand **cited and recommended by AI assistants** — ChatGPT, Claude, Gemini, Perplexity, Copilot, Mistral Le Chat, Google AI Overviews and AI Mode — and keeps you ranking on Google. Evidence-based, updated **October 2026**, works for any brand.
 
@@ -39,14 +39,14 @@ Ask Claude *"Is ChatGPT recommending us? Audit getacme.com"* and you get:
 
 ```
 /plugin marketplace add rob1-alt/refine-seo-geo
-/plugin install refine-seo-geo@refine
+/plugin install refine@refine
 ```
 
-Then ask: `Audit our AI visibility for example.com` — or call it directly with `/refine-seo-geo:seo-geo`.
+Then ask: `Audit our AI visibility for example.com` — or call it directly with `/refine:seo-geo`.
 
 ### claude.ai (skill upload)
 
-1. Download `seo-geo.zip` from the [latest release](https://github.com/rob1-alt/refine-seo-geo/releases), or zip the `skills/seo-geo/` folder yourself (the zip must contain the `seo-geo/` folder with `SKILL.md` inside).
+1. Download `seo-geo.zip` (skill only) from the [latest release](https://github.com/rob1-alt/refine-seo-geo/releases), or zip the `skills/seo-geo/` folder yourself (the zip must contain the `seo-geo/` folder with `SKILL.md` inside).
 2. In Claude's settings, open the **Skills** section, upload the zip and enable it. Code execution needs to be on for the scripts to run.
 
 ### Manual (Claude Code, without the plugin system)
